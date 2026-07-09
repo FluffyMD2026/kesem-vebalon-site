@@ -61,10 +61,14 @@ a {
   backdrop-filter: blur(14px);
 }
 
-.brand img {
-  width: 118px;
-  height: 62px;
-  object-fit: contain;
+.text-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  color: var(--blue-dark);
+  font-size: 1.35rem;
+  font-weight: 900;
+  white-space: nowrap;
 }
 
 .main-nav {
