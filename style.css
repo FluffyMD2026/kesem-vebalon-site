@@ -471,6 +471,76 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
+.balloons-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  left: var(--left);
+  bottom: -18vh;
+  width: var(--size);
+  height: calc(var(--size) * 1.24);
+  border-radius: 50% 50% 48% 48% / 58% 58% 42% 42%;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.82) 0 12%, rgba(255, 255, 255, 0) 28%),
+    linear-gradient(135deg, hsl(var(--hue) 92% 74%), hsl(calc(var(--hue) + 12) 88% 58%));
+  box-shadow: inset -8px -14px 18px rgba(0, 0, 0, 0.08);
+  transform: translate3d(0, 24vh, 0) rotate(-2deg);
+  opacity: 0;
+  animation: balloon-rise var(--duration) cubic-bezier(0.18, 0.72, 0.2, 1) var(--delay) forwards;
+  will-change: transform, opacity;
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  border-radius: 2px 2px 2px 0;
+  background: inherit;
+  filter: brightness(0.98);
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--size) * -0.58);
+  width: 2px;
+  height: calc(var(--size) * 0.72);
+  transform: translateX(-50%) rotate(var(--string-tilt));
+  background: rgba(99, 73, 110, 0.38);
+}
+
+@keyframes balloon-rise {
+  0% {
+    transform: translate3d(0, 22vh, 0) rotate(-4deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift), -150vh, 0) rotate(var(--spin));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .balloons-layer,
+  .balloon {
+    display: none;
+  }
+}
+
 .footer-phone {
   color: #fff;
   background: linear-gradient(135deg, var(--blue), var(--blue-dark));
