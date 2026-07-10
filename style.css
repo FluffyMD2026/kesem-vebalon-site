@@ -426,12 +426,15 @@ h3 {
   overflow: hidden;
   color: var(--ink);
   border: 0;
+  min-height: 360px;
   box-shadow: 0 12px 30px rgba(24, 55, 88, 0.1);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
 }
 
-.package-card h3 {
-  color: #fff;
-  margin-bottom: 8px;
+.package-card:hover {
+  transform: translateY(-4px) rotate(-0.5deg);
+  box-shadow: 0 18px 38px rgba(24, 55, 88, 0.16);
+  filter: saturate(1.03);
 }
 
 .package-card::before {
@@ -443,29 +446,55 @@ h3 {
   pointer-events: none;
 }
 
-.package-card h3,
-.package-card .price,
+.package-card__head,
 .package-bullets {
   position: relative;
   z-index: 1;
 }
 
-.package-card .price {
-  color: #fff !important;
+.package-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 104px;
+  margin: -24px -24px 18px;
+  padding: 26px 24px 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)),
+    rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.package-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.65rem;
+  line-height: 1.08;
+}
+
+.package-price {
   display: inline-flex;
   align-items: center;
-  min-height: 38px;
-  padding: 4px 12px;
-  margin-bottom: 18px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
+  justify-content: center;
+  min-width: 92px;
+  min-height: 44px;
+  padding: 0 14px;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: rotate(4deg);
 }
 
 .package-bullets {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 2px 2px 0;
   display: grid;
   gap: 10px;
 }
@@ -474,21 +503,25 @@ h3 {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  color: rgba(32, 34, 53, 0.94);
+  color: rgba(255, 255, 255, 0.95);
   font-weight: 700;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
 
 .package-bullets li::before {
   content: "";
   flex: 0 0 auto;
-  width: 14px;
-  height: 18px;
-  margin-top: 2px;
+  width: 16px;
+  height: 20px;
+  margin-top: 1px;
   border-radius: 50% 50% 48% 48% / 60% 60% 40% 40%;
   background:
-    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.8) 0 22%, rgba(255, 255, 255, 0) 24%),
-    currentColor;
-  box-shadow: inset -2px -4px 6px rgba(0, 0, 0, 0.08);
+    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.96) 0 18%, rgba(255, 255, 255, 0) 20%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.82));
+  border: 2px solid rgba(32, 34, 53, 0.12);
+  box-shadow:
+    inset -2px -4px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.18);
   transform: rotate(-8deg);
 }
 
@@ -497,7 +530,10 @@ h3 {
 }
 
 .package-card--coral .package-bullets li::before {
-  color: #ff4f7a;
+  box-shadow:
+    inset -2px -4px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 0 3px rgba(255, 79, 122, 0.18);
 }
 
 .package-card--blue {
@@ -505,7 +541,10 @@ h3 {
 }
 
 .package-card--blue .package-bullets li::before {
-  color: #2f88ff;
+  box-shadow:
+    inset -2px -4px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 0 3px rgba(47, 136, 255, 0.18);
 }
 
 .package-card--yellow {
@@ -513,7 +552,10 @@ h3 {
 }
 
 .package-card--yellow .package-bullets li::before {
-  color: #ffb23e;
+  box-shadow:
+    inset -2px -4px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 0 3px rgba(255, 178, 62, 0.18);
 }
 
 .package-card--green {
@@ -521,7 +563,10 @@ h3 {
 }
 
 .package-card--green .package-bullets li::before {
-  color: #2ecb86;
+  box-shadow:
+    inset -2px -4px 6px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 0 3px rgba(46, 203, 134, 0.18);
 }
 
 .gallery-grid {
@@ -775,6 +820,22 @@ h3 {
 
   .phone-link {
     min-width: 0;
+  }
+
+  .package-card__head {
+    margin: -24px -24px 16px;
+    min-height: 96px;
+    padding: 22px 22px 18px;
+  }
+
+  .package-card h3 {
+    font-size: 1.45rem;
+  }
+
+  .package-price {
+    min-width: 84px;
+    min-height: 40px;
+    font-size: 1rem;
   }
 
   .gallery-grid {
