@@ -483,14 +483,15 @@ h3 {
   position: absolute;
   left: var(--left);
   bottom: -18vh;
-  width: var(--size);
-  height: calc(var(--size) * 1.24);
-  border-radius: 50% 50% 48% 48% / 58% 58% 42% 42%;
+  width: calc(var(--size) * 1.28);
+  height: calc(var(--size) * 0.92);
+  border-radius: 42% 58% 46% 54% / 56% 56% 44% 44%;
   background:
-    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.82) 0 12%, rgba(255, 255, 255, 0) 28%),
-    linear-gradient(135deg, hsl(var(--hue) 92% 74%), hsl(calc(var(--hue) + 12) 88% 58%));
-  box-shadow: inset -8px -14px 18px rgba(0, 0, 0, 0.08);
-  transform: translate3d(0, 24vh, 0) rotate(-2deg);
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.82) 0 10%, rgba(255, 255, 255, 0) 28%),
+    linear-gradient(90deg, transparent 0 13%, rgba(255, 255, 255, 0.08) 13% 18%, transparent 18% 36%, rgba(255, 255, 255, 0.07) 36% 41%, transparent 41% 100%),
+    linear-gradient(135deg, hsl(var(--hue) 92% 76%), hsl(calc(var(--hue) + 12) 88% 60%));
+  box-shadow: inset -7px -11px 16px rgba(0, 0, 0, 0.08);
+  transform: translate3d(0, 26vh, 0) rotate(-2deg);
   opacity: 0;
   animation: balloon-rise var(--duration) cubic-bezier(0.18, 0.72, 0.2, 1) var(--delay) forwards;
   will-change: transform, opacity;
@@ -499,37 +500,40 @@ h3 {
 .balloon::before {
   content: "";
   position: absolute;
-  left: 50%;
-  bottom: -9px;
-  width: 10px;
-  height: 10px;
-  transform: translateX(-50%) rotate(45deg);
-  border-radius: 2px 2px 2px 0;
-  background: inherit;
-  filter: brightness(0.98);
+  left: 58%;
+  top: 17%;
+  width: 21%;
+  height: 17%;
+  transform: translateX(-50%) rotate(8deg);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
+  box-shadow:
+    -16% 22% 0 -28% rgba(255, 255, 255, 0.14),
+    18% 12% 0 -30% rgba(255, 255, 255, 0.1);
 }
 
 .balloon::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: calc(var(--size) * -0.58);
+  bottom: calc(var(--size) * -0.78);
   width: 2px;
-  height: calc(var(--size) * 0.72);
+  height: calc(var(--size) * 0.95);
   transform: translateX(-50%) rotate(var(--string-tilt));
   background: rgba(99, 73, 110, 0.38);
 }
 
 @keyframes balloon-rise {
   0% {
-    transform: translate3d(0, 22vh, 0) rotate(-4deg);
+    transform: translate3d(0, 24vh, 0) rotate(-4deg);
     opacity: 0;
   }
   12% {
     opacity: 1;
   }
   100% {
-    transform: translate3d(var(--drift), -150vh, 0) rotate(var(--spin));
+    transform: translate3d(var(--drift), -158vh, 0) rotate(var(--spin));
     opacity: 0;
   }
 }

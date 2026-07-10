@@ -44,14 +44,14 @@ if (isHomePage && !window.matchMedia("(prefers-reduced-motion: reduce)").matches
   document.body.prepend(layer);
 
   const colors = [340, 198, 32, 150, 260];
-  const count = 12;
+  const count = 8;
 
   for (let i = 0; i < count; i += 1) {
     const balloon = document.createElement("span");
     const left = Math.random() * 92 + 4;
-    const size = 34 + Math.random() * 34;
-    const duration = 5.8 + Math.random() * 2.6;
-    const delay = Math.random() * 0.9;
+    const size = 32 + Math.random() * 28;
+    const duration = 8.5 + Math.random() * 4;
+    const delay = Math.random() * 1.2;
     const drift = (Math.random() * 160 - 80).toFixed(1) + "px";
     const spin = (Math.random() * 20 - 10).toFixed(1) + "deg";
     const stringTilt = (Math.random() * 8 - 4).toFixed(1) + "deg";
