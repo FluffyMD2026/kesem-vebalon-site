@@ -36,7 +36,7 @@ body {
   color: var(--ink);
   background:
     linear-gradient(180deg, #fff8fb 0%, #f6fbff 42%, #ffffff 100%);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 img {
@@ -275,20 +275,39 @@ p {
   margin-top: 0;
 }
 
+main {
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+p {
+  text-align: center;
+}
+
+h1,
+h2,
+h3 {
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
 h1 {
   margin-bottom: 14px;
   font-size: clamp(3.2rem, 8vw, 6.5rem);
-  line-height: 0.95;
+  line-height: 1.05;
   letter-spacing: 0;
 }
 
 h2 {
   font-size: clamp(2rem, 4vw, 3.25rem);
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 h3 {
   font-size: 1.25rem;
+  line-height: 1.25;
 }
 
 .hero-text,
@@ -296,7 +315,25 @@ h3 {
 .section-heading p {
   color: var(--muted);
   font-size: 1.12rem;
-  max-width: 700px;
+  max-width: 42rem;
+  margin-inline: auto;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.hero-content,
+.page-hero,
+.section-heading,
+.process-card,
+.service-card,
+.info-card,
+.package-card {
+  text-align: center;
+}
+
+.hero-actions,
+.contact-actions {
+  justify-content: center;
 }
 
 .quick-strip {
@@ -312,6 +349,7 @@ h3 {
   background: #fff;
   padding: 22px;
   border: 1px solid var(--line);
+  text-align: center;
 }
 
 .quick-strip strong,
@@ -335,9 +373,15 @@ h3 {
   border-bottom: 1px solid var(--line);
 }
 
+.page-hero h1,
+.page-hero .hero-text {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
 .section-heading {
   max-width: 920px;
-  margin-bottom: 26px;
+  margin: 0 auto 26px;
 }
 
 .intro-section {
@@ -365,7 +409,7 @@ h3 {
   justify-content: center;
   width: 44px;
   height: 44px;
-  margin-bottom: 18px;
+  margin: 0 auto 18px;
   border-radius: 50%;
   color: #fff;
   background: var(--blue);
@@ -409,6 +453,9 @@ h3 {
 .package-card p,
 .info-card p {
   color: var(--muted);
+  max-width: 30ch;
+  margin-inline: auto;
+  line-height: 1.65;
 }
 
 .price {
@@ -474,6 +521,10 @@ h3 {
   line-height: 1.08;
 }
 
+.package-card__head h3 {
+  margin-inline: auto;
+}
+
 .package-price {
   display: inline-flex;
   align-items: center;
@@ -502,9 +553,11 @@ h3 {
 .package-bullets li {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 10px;
   color: rgba(255, 255, 255, 0.95);
   font-weight: 700;
+  text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
 
@@ -606,21 +659,25 @@ h3 {
   align-items: center;
   background: var(--ink);
   color: #fff;
+  text-align: center;
 }
 
 .contact-section p {
   color: rgba(255, 255, 255, 0.76);
+  max-width: 42rem;
+  margin-inline: auto;
 }
 
 .site-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
   padding: 22px clamp(16px, 5vw, 70px);
   color: var(--muted);
   background: #fff;
   border-top: 1px solid var(--line);
+  text-align: center;
 }
 
 .legal-bar {
@@ -692,6 +749,7 @@ h3 {
 
 .legal-modal__body {
   color: var(--ink);
+  text-align: center;
 }
 
 .legal-modal__body h3 {
@@ -704,9 +762,18 @@ h3 {
   color: var(--muted);
 }
 
+.legal-modal__body p {
+  max-width: 42rem;
+  margin-inline: auto;
+  text-wrap: pretty;
+}
+
 .legal-modal__body ul {
-  margin: 0 0 16px;
-  padding: 0 20px 0 0;
+  max-width: 34rem;
+  margin: 0 auto 16px;
+  padding: 0;
+  list-style-position: inside;
+  text-align: center;
 }
 
 .legal-modal__close {
