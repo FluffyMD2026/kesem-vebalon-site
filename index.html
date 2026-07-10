@@ -46,11 +46,26 @@
     </section>
   </main>
 
+  <div class="legal-bar" aria-label="מידע משפטי">
+    <button class="legal-link" type="button" data-legal-open="accessibility">הצהרת נגישות</button>
+    <button class="legal-link" type="button" data-legal-open="terms">תקנון</button>
+    <button class="legal-link" type="button" data-legal-open="privacy">מדיניות פרטיות</button>
+  </div>
+
   <footer class="site-footer">
     <span>קסם ובלון</span>
     <span>עיצובי בלונים לאירועים</span>
     <a class="phone-link footer-phone" href="tel:0512252288">051-225-2288</a>
   </footer>
+
+  <div class="legal-modal" data-legal-modal aria-hidden="true">
+    <div class="legal-modal__panel" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+      <button class="legal-modal__close" type="button" data-legal-close aria-label="סגירה">×</button>
+      <p class="eyebrow" id="legal-modal-eyebrow">מידע משפטי</p>
+      <h2 id="legal-modal-title">הצהרת נגישות</h2>
+      <div class="legal-modal__body" data-legal-body></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

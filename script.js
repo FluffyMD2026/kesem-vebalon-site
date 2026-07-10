@@ -4,6 +4,12 @@ const modalImage = document.querySelector("[data-modal-image]");
 const modalClose = document.querySelector("[data-modal-close]");
 const modalPrev = document.querySelector("[data-modal-prev]");
 const modalNext = document.querySelector("[data-modal-next]");
+const legalModal = document.querySelector("[data-legal-modal]");
+const legalBody = document.querySelector("[data-legal-body]");
+const legalTitle = document.querySelector("#legal-modal-title");
+const legalEyebrow = document.querySelector("#legal-modal-eyebrow");
+const legalClose = document.querySelector("[data-legal-close]");
+const legalTriggers = Array.from(document.querySelectorAll("[data-legal-open]"));
 const isHomePage = document.body.classList.contains("home-page");
 let activeIndex = 0;
 
@@ -35,6 +41,84 @@ if (galleryLinks.length && modal && modalImage && modalClose && modalPrev && mod
     if (event.key === "Escape") modal.classList.remove("is-open");
     if (event.key === "ArrowLeft") showImage(activeIndex + 1);
     if (event.key === "ArrowRight") showImage(activeIndex - 1);
+  });
+}
+
+if (legalModal && legalBody && legalTitle && legalEyebrow && legalClose && legalTriggers.length) {
+  const legalContent = {
+    accessibility: {
+      title: "הצהרת נגישות",
+      eyebrow: "מידע משפטי",
+      body: `
+        <p>האתר נבנה כדי להיות נוח לקריאה ולניווט, עם טקסט ברור, מבנה עקבי וניגודיות טובה.</p>
+        <h3>מה נעשה</h3>
+        <ul>
+          <li>שימוש במקלדת בלי תלות בעכבר.</li>
+          <li>טקסטים חלופיים לתמונות ותוויות ברורות לקישורים.</li>
+          <li>כפתורים וקישורים גדולים יחסית ונוחים ללחיצה.</li>
+        </ul>
+        <h3>המסגרת</h3>
+        <p>האתר מכוון לעקרונות WCAG 2.2 ברמת AA, בהתאם לשימוש המעשי באתר ובשירותי הבלונים.</p>
+        <p>אם נתקלתם בקושי להשתמש באתר, אפשר להתקשר או לשלוח הודעה ואנחנו נטפל בזה ישירות.</p>
+      `,
+    },
+    terms: {
+      title: "תקנון",
+      eyebrow: "תנאי שימוש",
+      body: `
+        <p>זהו נוסח קצר ופשוט. הוא מסביר איך עובדים עם האתר ועם ההזמנות, ולא מחליף ייעוץ משפטי.</p>
+        <h3>הזמנות</h3>
+        <p>הזמנה נסגרת לאחר אישור סופי ב-WhatsApp או בטלפון, כולל תאריך, שעה, מיקום וסוג העיצוב.</p>
+        <h3>מחירים ותשלום</h3>
+        <p>המחיר הסופי נקבע לפי סוג העבודה, גודל ההקמה, כמות החומרים והמרחק לכתובת.</p>
+        <h3>שינויים וביטולים</h3>
+        <p>שינויים או ביטולים מתואמים ישירות מולנו מוקדם ככל האפשר כדי שנוכל לעדכן את ההכנות.</p>
+      `,
+    },
+    privacy: {
+      title: "מדיניות פרטיות",
+      eyebrow: "שימוש בפרטים",
+      body: `
+        <p>אנחנו אוספים רק את הפרטים שנדרשים כדי לחזור אליכם, לתאם את ההזמנה ולתת הצעת מחיר.</p>
+        <h3>אילו פרטים</h3>
+        <ul>
+          <li>שם, מספר טלפון ותוכן ההודעה.</li>
+          <li>תאריך, מיקום, סוג אירוע והעדפות עיצוב.</li>
+        </ul>
+        <h3>מה עושים איתם</h3>
+        <p>הפרטים משמשים רק כדי לספק שירות, לתאם הגעה ולשמור על רצף תקשורת.</p>
+        <p>לא נמסור את המידע לצד שלישי אלא אם זה נדרש לביצוע ההזמנה או לפי דין.</p>
+      `,
+    },
+  };
+
+  function openLegal(section) {
+    const content = legalContent[section];
+    if (!content) return;
+    legalTitle.textContent = content.title;
+    legalEyebrow.textContent = content.eyebrow;
+    legalBody.innerHTML = content.body;
+    legalModal.classList.add("is-open");
+    legalModal.setAttribute("aria-hidden", "false");
+  }
+
+  function closeLegal() {
+    legalModal.classList.remove("is-open");
+    legalModal.setAttribute("aria-hidden", "true");
+  }
+
+  legalTriggers.forEach(button => {
+    button.addEventListener("click", () => openLegal(button.dataset.legalOpen));
+  });
+
+  legalClose.addEventListener("click", closeLegal);
+
+  legalModal.addEventListener("click", event => {
+    if (event.target === legalModal) closeLegal();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeLegal();
   });
 }
 
