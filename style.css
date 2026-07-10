@@ -3,6 +3,7 @@
   src: url("Fonts/Rubik-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 :root {
@@ -295,18 +296,18 @@ h3 {
 
 h1 {
   margin-bottom: 14px;
-  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
   line-height: 1.05;
   letter-spacing: 0;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.8rem, 3vw, 2.65rem);
   line-height: 1.15;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   line-height: 1.25;
 }
 
@@ -329,6 +330,12 @@ h3 {
 .info-card,
 .package-card {
   text-align: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-actions,
@@ -442,6 +449,50 @@ h3 {
   box-shadow: 0 8px 24px rgba(24, 55, 88, 0.06);
 }
 
+.service-card,
+.info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-card {
+  position: relative;
+  padding-top: 30px;
+}
+
+.service-card::before {
+  content: "";
+  width: 34px;
+  height: 42px;
+  margin-bottom: 16px;
+  border-radius: 50% 50% 48% 48% / 58% 58% 42% 42%;
+  background:
+    radial-gradient(circle at 32% 25%, rgba(255, 255, 255, 0.9) 0 12%, transparent 26%),
+    linear-gradient(135deg, var(--card-accent, #f45ca7), var(--card-accent-dark, #c73380));
+  box-shadow: inset -5px -7px 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:nth-child(2) {
+  --card-accent: #3bb8f0;
+  --card-accent-dark: #1878c0;
+}
+
+.service-card:nth-child(3) {
+  --card-accent: #ffc94d;
+  --card-accent-dark: #ef8f3e;
+}
+
+.service-card:nth-child(4) {
+  --card-accent: #55cf91;
+  --card-accent-dark: #1d9e77;
+}
+
+.service-card:nth-child(5) {
+  --card-accent: #9a7cff;
+  --card-accent-dark: #5f49c7;
+}
+
 .service-card:hover,
 .package-card:hover,
 .info-card:hover {
@@ -456,6 +507,13 @@ h3 {
   max-width: 30ch;
   margin-inline: auto;
   line-height: 1.65;
+}
+
+.service-card .primary-action,
+.service-card .secondary-action,
+.info-card .primary-action,
+.info-card .secondary-action {
+  margin-top: auto;
 }
 
 .price {
