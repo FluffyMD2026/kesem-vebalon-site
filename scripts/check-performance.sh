@@ -72,10 +72,11 @@ package_assets=(
 
 preview_files=()
 gallery_folders=(
+  Images/Gallery/home-designs
+  Images/Gallery/room-designs
+  Images/Gallery/organic-walls-arches
   Images/Gallery/bar-bat-mitzvah
   Images/Gallery/weddings
-  Images/Gallery/organic
-  Images/Gallery/arches
   Images/Gallery/business-events
 )
 
@@ -128,7 +129,7 @@ done
 
 printf 'Conservative 10 Mbps estimates (uncompressed, cold cache)\n'
 report_payload 'Homepage above-fold assets' "$home_bytes"
-report_payload 'Homepage plus 5 lazy previews' "$home_with_previews"
+report_payload 'Homepage plus category previews' "$home_with_previews"
 report_payload 'Gallery category landing' "$gallery_bytes"
 report_payload 'Packages page' "$package_bytes"
 report_payload 'Largest category after click' "$largest_category_bytes"

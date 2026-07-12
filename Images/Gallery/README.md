@@ -2,10 +2,11 @@
 
 Move an image between these folders to change its category:
 
+- `home-designs` — עיצובים עד הבית
+- `room-designs` — עיצובי חדרים
+- `organic-walls-arches` — אורגני/קירות/קשתות
 - `bar-bat-mitzvah` — בר/בת מצווה
 - `weddings` — חתונות
-- `organic` — אורגני
-- `arches` — קשתות
 - `business-events` — אירועים עסקיים
 
 When the local preview is started with `bash scripts/serve-local.sh`, the open

@@ -12,9 +12,9 @@ const galleryAltText = Object.freeze({
   "/Images/Gallery/weddings/WhatsApp Image 2025-05-05 at 22.13.13 (1).jpeg": "דמות כלה מבלונים המחזיקה זר פרחים צבעוני ובלון לב אדום",
   "/Images/Gallery/weddings/WhatsApp Image 2025-05-05 at 22.13.13.jpeg": "עיצוב אמנותי של דמות כלה מבלונים עם זר פרחים ובלון לב",
   "/Images/Gallery/weddings/WhatsApp Image 2025-05-05 at 22.14.00 (4).jpeg": "שולחן אירוע חגיגי בחוץ עם בלוני בועה שקופים וסידורי פרחים סגולים",
-  "/Images/Gallery/organic/WhatsApp Image 2025-05-05 at 22.12.25.jpeg": "עיצוב יום הולדת 80 בזהב ולבן עם בלון כתר ובסיס בלונים אורגני",
-  "/Images/Gallery/organic/WhatsApp Image 2025-05-05 at 22.13.12.jpeg": "סידור בלונים אורגני א-סימטרי בכחול בהיר, לבן וכסף",
-  "/Images/Gallery/arches/WhatsApp Image 2025-05-05 at 22.14.40.jpeg": "קשת בלונים שחורה המעוטרת בפרחי בלון כסופים גדולים",
+  "/Images/Gallery/organic-walls-arches/WhatsApp Image 2025-05-05 at 22.12.25.jpeg": "עיצוב יום הולדת 80 בזהב ולבן עם בלון כתר ובסיס בלונים אורגני",
+  "/Images/Gallery/organic-walls-arches/WhatsApp Image 2025-05-05 at 22.13.12.jpeg": "סידור בלונים אורגני א-סימטרי בכחול בהיר, לבן וכסף",
+  "/Images/Gallery/organic-walls-arches/WhatsApp Image 2025-05-05 at 22.14.40.jpeg": "קשת בלונים שחורה המעוטרת בפרחי בלון כסופים גדולים",
   "/Images/Gallery/business-events/WhatsApp Image 2025-05-05 at 22.14.00 (1).jpeg": "בלון בועה שקוף ממותג עם כיתוב, בלונים כחולים וכסופים ובסיס שולחני",
   "/Images/Gallery/business-events/WhatsApp Image 2025-05-05 at 22.14.00 (3).jpeg": "עיצוב בלון בועה ממותג בכחול וכסף בחלל משרדי",
 });
@@ -77,6 +77,7 @@ function setPageInert(activeModal, inert) {
 function createCategoryWreath(category, { linked = false, compact = false, button = false } = {}) {
   const wreath = document.createElement(button ? "button" : linked ? "a" : "div");
   wreath.className = `category-wreath${compact ? " category-wreath--compact" : ""}`;
+  if (category.title.length > 16) wreath.classList.add("category-wreath--long-title");
 
   if (linked) {
     wreath.href = `/gallery/#${category.slug}`;
@@ -95,7 +96,7 @@ function createCategoryWreath(category, { linked = false, compact = false, butto
 
   const center = document.createElement("span");
   center.className = "category-wreath__center";
-  center.textContent = category.title;
+  center.textContent = category.title.replace(/\//g, " / ");
 
   wreath.append(image, center);
   return wreath;
@@ -603,6 +604,106 @@ document.addEventListener("keydown", event => {
   setAccessibilityPanel(false);
   accessibilityTab.focus();
 });
+
+const heroSlideshow = document.querySelector("[data-hero-slideshow]");
+const heroSlides = heroSlideshow ? Array.from(heroSlideshow.querySelectorAll("[data-hero-slide]")) : [];
+
+if (heroSlideshow && heroSlides.length === 2 && galleryData.length) {
+  const slideshowCategories = galleryData.filter(category => category.images.length);
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let categoryQueue = [];
+  let activeHeroSlideIndex = 0;
+  let currentHeroSource = heroSlides[0].getAttribute("src") || "";
+  let slideshowTimer = null;
+  let loadGeneration = 0;
+
+  function shuffle(items) {
+    const shuffled = [...items];
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+    }
+    return shuffled;
+  }
+
+  function getNextHeroPhoto() {
+    if (!categoryQueue.length) categoryQueue = shuffle(slideshowCategories);
+    const category = categoryQueue.shift();
+    const alternatives = category.images.filter(source => source !== currentHeroSource);
+    const choices = alternatives.length ? alternatives : category.images;
+    const source = choices[Math.floor(Math.random() * choices.length)];
+    return { category, source };
+  }
+
+  function slideshowCanRun() {
+    return !document.hidden &&
+      !reducedMotionQuery.matches &&
+      !document.documentElement.classList.contains("a11y-reduce-motion");
+  }
+
+  function stopHeroSlideshow() {
+    if (slideshowTimer !== null) window.clearTimeout(slideshowTimer);
+    slideshowTimer = null;
+    loadGeneration += 1;
+  }
+
+  function scheduleHeroSlide(delay = 4000) {
+    if (!slideshowCanRun() || slideshowTimer !== null) return;
+    slideshowTimer = window.setTimeout(() => {
+      slideshowTimer = null;
+      showNextHeroSlide();
+    }, delay);
+  }
+
+  async function showNextHeroSlide() {
+    if (!slideshowCanRun()) return;
+
+    const generation = ++loadGeneration;
+    const { category, source } = getNextHeroPhoto();
+    const incomingIndex = activeHeroSlideIndex === 0 ? 1 : 0;
+    const incomingSlide = heroSlides[incomingIndex];
+    incomingSlide.src = source;
+
+    try {
+      await incomingSlide.decode();
+    } catch (error) {
+      if (!incomingSlide.complete || !incomingSlide.naturalWidth) {
+        scheduleHeroSlide(1000);
+        return;
+      }
+    }
+
+    if (generation !== loadGeneration || !slideshowCanRun()) return;
+
+    heroSlides[activeHeroSlideIndex].classList.remove("is-active");
+    incomingSlide.classList.add("is-active");
+    activeHeroSlideIndex = incomingIndex;
+    currentHeroSource = source;
+    heroSlideshow.dataset.heroCategory = category.slug;
+    heroSlideshow.dataset.heroSource = source;
+    scheduleHeroSlide();
+  }
+
+  function syncHeroSlideshow() {
+    if (slideshowCanRun()) {
+      scheduleHeroSlide();
+    } else {
+      stopHeroSlideshow();
+    }
+  }
+
+  document.addEventListener("visibilitychange", syncHeroSlideshow);
+  const motionObserver = new MutationObserver(syncHeroSlideshow);
+  motionObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+  if (typeof reducedMotionQuery.addEventListener === "function") {
+    reducedMotionQuery.addEventListener("change", syncHeroSlideshow);
+  } else {
+    reducedMotionQuery.addListener(syncHeroSlideshow);
+  }
+
+  syncHeroSlideshow();
+}
 
 if (
   galleryCategoryButtons.length &&

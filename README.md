@@ -31,7 +31,7 @@ Then open:
 http://localhost:8000
 ```
 
-The local preview watches `Images/Gallery`. Move photos among the five category
+The local preview watches `Images/Gallery`. Move photos among the six category
 folders and the open homepage or gallery will reload automatically; no HTML
 editing is needed. The same gallery index is generated during a Netlify deploy.
 
@@ -66,7 +66,7 @@ parallel HTTP/2 requests, so deployed repeat visits should be faster.
 
 ## Search metadata
 
-The current canonical origin is `https://kesem-vebalon.netlify.app`. Canonical
+The current canonical origin is `https://kesemvballoon.co.il`. Canonical
 links, social metadata, `robots.txt`, `sitemap.xml`, and the homepage structured
 data use this value. When a custom domain is connected, replace the old origin
 in those files, update the structured-data CSP hash in `netlify.toml`, redirect

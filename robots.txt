@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kesem-vebalon.netlify.app/sitemap.xml
+Sitemap: https://kesemvballoon.co.il/sitemap.xml

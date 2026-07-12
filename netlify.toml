@@ -3,6 +3,18 @@
   command = "bash scripts/generate-gallery.sh"
 
 [[redirects]]
+  from = "http://kesem-vebalon.netlify.app/*"
+  to = "https://kesemvballoon.co.il/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://kesem-vebalon.netlify.app/*"
+  to = "https://kesemvballoon.co.il/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/services/*"
   to = "/#services"
   status = 301
