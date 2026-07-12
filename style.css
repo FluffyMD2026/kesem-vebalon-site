@@ -776,6 +776,271 @@ h3 {
   margin-inline: auto;
 }
 
+.quote-builder-section {
+  scroll-margin-top: 116px;
+  background:
+    radial-gradient(circle at 8% 16%, color-mix(in srgb, var(--brand-pink) 11%, transparent), transparent 28%),
+    radial-gradient(circle at 92% 86%, color-mix(in srgb, var(--brand-blue) 12%, transparent), transparent 30%),
+    var(--brand-ivory-light);
+}
+
+.quote-builder {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.45fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.quote-builder__intro {
+  padding-block: 18px;
+  text-align: right;
+}
+
+.quote-builder__intro h2 {
+  margin: 0 0 14px;
+  color: var(--brand-blue-deep);
+}
+
+.quote-builder__intro > p:last-of-type {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.quote-builder__benefits {
+  display: grid;
+  gap: 14px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quote-builder__benefits li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--line);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.quote-builder__benefits li > span {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  color: #fff;
+  background: var(--brand-blue-deep);
+  border-radius: 50%;
+}
+
+.quote-builder__benefits li:nth-child(2) > span {
+  background: var(--brand-pink-deep);
+}
+
+.quote-builder__benefits li:nth-child(3) > span {
+  color: var(--ink);
+  background: var(--brand-gold);
+}
+
+.quote-form {
+  position: relative;
+  padding: clamp(24px, 4vw, 42px);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--paper) 96%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand-gold) 42%, var(--line));
+  border-radius: 24px;
+  box-shadow: 0 22px 54px var(--surface-shadow);
+}
+
+.quote-form::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: var(--brand-gradient);
+}
+
+.quote-form__required {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.quote-form__required span,
+.form-field label span {
+  color: var(--brand-pink-deep);
+}
+
+.quote-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 18px;
+}
+
+.form-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field--wide {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid color-mix(in srgb, var(--brand-blue) 28%, var(--line));
+  border-radius: 12px;
+  font: inherit;
+  line-height: 1.45;
+}
+
+.form-field textarea {
+  min-height: 118px;
+  resize: vertical;
+}
+
+.form-field select {
+  cursor: pointer;
+}
+
+#quote-phone {
+  direction: ltr;
+  text-align: right;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+}
+
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible,
+.quote-checkbox input:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand-blue) 42%, transparent);
+  outline-offset: 2px;
+  border-color: var(--brand-blue-deep);
+}
+
+.form-field input:user-invalid,
+.form-field select:user-invalid,
+.form-field textarea:user-invalid {
+  border-color: #a7243b;
+}
+
+.form-hint,
+.form-status,
+.form-notice,
+.quote-form__privacy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.form-hint--status {
+  min-height: 1.4em;
+  color: var(--brand-blue-deep);
+  font-weight: 700;
+}
+
+.quote-checkbox {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 4px 0;
+  font-weight: 700;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.quote-checkbox input {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  margin: 1px 0 0;
+  accent-color: var(--brand-blue-deep);
+}
+
+.quote-form__privacy {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.quote-submit {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  margin: 18px auto 0;
+  border: 0;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.quote-submit img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.form-status {
+  min-height: 1.6em;
+  margin-top: 12px;
+  color: var(--brand-blue-deep);
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-notice {
+  margin-top: 14px;
+  text-align: center;
+}
+
+html.a11y-high-contrast .quote-builder-section,
+html.a11y-high-contrast .quote-form {
+  color: #000;
+  background: #fff;
+  border-color: #000;
+  box-shadow: none;
+}
+
+html.a11y-high-contrast .quote-builder__intro h2,
+html.a11y-high-contrast .quote-builder__intro p,
+html.a11y-high-contrast .form-hint,
+html.a11y-high-contrast .form-status,
+html.a11y-high-contrast .quote-form__privacy {
+  color: #000;
+}
+
+html.a11y-high-contrast .form-field input,
+html.a11y-high-contrast .form-field select,
+html.a11y-high-contrast .form-field textarea {
+  color: #000;
+  background: #fff;
+  border: 2px solid #000;
+}
+
 .section-heading {
   max-width: 920px;
   margin: 0 auto 26px;
@@ -1992,6 +2257,15 @@ html.a11y-reduce-motion .balloon {
     grid-template-columns: 1fr;
   }
 
+  .quote-builder {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-builder__intro {
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
   .hero-media,
   .hero-media img {
     min-height: 320px;
@@ -2145,6 +2419,23 @@ html.a11y-reduce-motion .balloon {
 
   .service-grid {
     grid-template-columns: 1fr;
+  }
+
+  .quote-form {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .quote-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field--wide {
+    grid-column: auto;
+  }
+
+  .quote-submit {
+    width: 100%;
   }
 
   .home-services {

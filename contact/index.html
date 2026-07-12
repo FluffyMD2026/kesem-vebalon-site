@@ -24,7 +24,7 @@
   <meta name="theme-color" content="#f7efe6">
   <link rel="icon" type="image/jpeg" href="/Images/logo-icon-v6.jpg">
   <link rel="stylesheet" href="/theme.css?v=secure-v1">
-  <link rel="stylesheet" href="/style.css?v=secure-v1">
+  <link rel="stylesheet" href="/style.css?v=quote-v1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">דלגו לתוכן הראשי</a>
@@ -47,7 +47,95 @@
     <section class="page-hero">
       <p class="eyebrow">בואו נעשה קסם</p>
       <h1>מתחילים בשיחה קצרה</h1>
-      <p class="hero-text">שלחו תאריך, מקום וסגנון. נחזור אליכם עם כיוון.</p>
+      <p class="hero-text">כמה פרטים קצרים — ואנחנו פותחים WhatsApp עם בקשה מסודרת להצעת מחיר.</p>
+    </section>
+
+    <section class="section quote-builder-section" id="quote-builder" aria-labelledby="quote-builder-title">
+      <div class="quote-builder">
+        <div class="quote-builder__intro">
+          <p class="eyebrow">שתי דקות ומתחילים</p>
+          <h2 id="quote-builder-title">בונים את הבקשה שלכם</h2>
+          <p>ממלאים את הפרטים החשובים, ואנחנו מסדרים אותם להודעת WhatsApp ברורה שקל לענות עליה.</p>
+          <ul class="quote-builder__benefits">
+            <li><span aria-hidden="true">1</span> בוחרים אירוע ותאריך</li>
+            <li><span aria-hidden="true">2</span> מוסיפים יישוב, צבעים ותקציב</li>
+            <li><span aria-hidden="true">3</span> פותחים הודעה מוכנה ב־WhatsApp</li>
+          </ul>
+        </div>
+
+        <form class="quote-form" data-quote-form>
+          <p class="quote-form__required"><span aria-hidden="true">*</span> שדות חובה</p>
+          <div class="quote-form__grid">
+            <div class="form-field">
+              <label for="quote-name">שם <span aria-hidden="true">*</span></label>
+              <input id="quote-name" name="customerName" type="text" autocomplete="name" maxlength="60" required>
+            </div>
+
+            <div class="form-field">
+              <label for="quote-phone">מספר לחזרה <span aria-hidden="true">*</span></label>
+              <input id="quote-phone" name="callbackPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" pattern="[0-9+() .-]{9,20}" aria-describedby="quote-phone-hint" required>
+              <p class="form-hint" id="quote-phone-hint">המספר שאליו תרצו שנחזור.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="quote-event-type">סוג האירוע <span aria-hidden="true">*</span></label>
+              <select id="quote-event-type" name="eventType" required>
+                <option value="" selected disabled>בחרו מהרשימה</option>
+                <option>בר / בת מצווה</option>
+                <option>חתונה</option>
+                <option>יום הולדת או עיצוב חדר</option>
+                <option>קשת, קיר צילום או עיצוב אורגני</option>
+                <option>בלוני צורה לרחבה</option>
+                <option>אירוע עסקי או מיתוג</option>
+                <option>אירוע אחר</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="quote-date">תאריך האירוע <span aria-hidden="true">*</span></label>
+              <input id="quote-date" name="eventDate" type="date" required>
+            </div>
+
+            <div class="form-field form-field--wide">
+              <label for="quote-city">עיר או יישוב <span aria-hidden="true">*</span></label>
+              <input id="quote-city" name="city" type="text" list="israel-localities-list" autocomplete="address-level2" maxlength="80" aria-describedby="quote-city-hint quote-city-status" placeholder="התחילו להקליד שם יישוב" required>
+              <datalist id="israel-localities-list" data-localities-list></datalist>
+              <p class="form-hint" id="quote-city-hint">אפשר לבחור ממאגר יישובי הלמ״ס או להקליד יישוב באופן חופשי.</p>
+              <p class="form-hint form-hint--status" id="quote-city-status" data-city-status role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+              <label for="quote-budget">תקציב משוער</label>
+              <input id="quote-budget" name="budget" type="text" inputmode="decimal" maxlength="40" placeholder="לדוגמה: עד 1,500 ₪">
+            </div>
+
+            <div class="form-field">
+              <label for="quote-colors">צבעים או סגנון</label>
+              <input id="quote-colors" name="colors" type="text" maxlength="100" placeholder="לדוגמה: ורוד, זהב וקרם">
+            </div>
+
+            <div class="form-field form-field--wide">
+              <label for="quote-details">מה עוד חשוב שנדע?</label>
+              <textarea id="quote-details" name="details" rows="4" maxlength="600" placeholder="ספרו לנו על החלל, מספר האורחים או הרעיון שיש לכם"></textarea>
+            </div>
+
+            <label class="quote-checkbox form-field--wide">
+              <input name="hasInspiration" type="checkbox" value="yes">
+              <span>יש לי תמונת השראה ואצרף אותה ב־WhatsApp</span>
+            </label>
+          </div>
+
+          <p class="quote-form__privacy">הפרטים נשארים בדפדפן ונכנסים להודעה רק כשתלחצו על הכפתור.</p>
+          <button class="primary-action whatsapp-action quote-submit" type="submit">
+            <img src="/Images/whatsapp-logo.svg" alt="" width="26" height="26">
+            פותחים בקשה ב־WhatsApp
+          </button>
+          <p class="form-status" data-quote-status role="status" aria-live="polite"></p>
+          <noscript>
+            <p class="form-notice">כדי לבנות הודעה אוטומטית צריך JavaScript. אפשר גם <a href="https://wa.me/972512252288">לכתוב לנו ישירות ב־WhatsApp</a>.</p>
+          </noscript>
+        </form>
+      </div>
     </section>
 
     <section class="section" aria-labelledby="contact-options-title">
@@ -77,6 +165,7 @@
     <span>עיצובי בלונים לאירועים</span>
     <a class="phone-link footer-phone" href="tel:0512252288">051-225-2288</a>
   </footer>
-  <script src="/script.js?v=secure-v1"></script>
+  <script src="/data/israel-localities.js?v=cbs-2024"></script>
+  <script src="/script.js?v=quote-v1"></script>
 </body>
 </html>

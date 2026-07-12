@@ -305,6 +305,143 @@ floatingWhatsapp.innerHTML = `
 `;
 document.body.appendChild(floatingWhatsapp);
 
+const quoteForm = document.querySelector("[data-quote-form]");
+
+if (quoteForm) {
+  const localityList = quoteForm.querySelector("[data-localities-list]");
+  const cityInput = quoteForm.elements.namedItem("city");
+  const cityStatus = quoteForm.querySelector("[data-city-status]");
+  const phoneInput = quoteForm.elements.namedItem("callbackPhone");
+  const dateInput = quoteForm.elements.namedItem("eventDate");
+  const quoteStatus = quoteForm.querySelector("[data-quote-status]");
+  const localityRecords = Array.isArray(window.israelLocalities?.items)
+    ? window.israelLocalities.items
+    : [];
+
+  const normalizeLocality = value => String(value || "").trim().replace(/\s+/g, " ");
+  const officialLocalities = new Set(
+    localityRecords
+      .map(record => normalizeLocality(Array.isArray(record) ? record[1] : ""))
+      .filter(Boolean),
+  );
+
+  if (localityList && localityRecords.length) {
+    const localityOptions = document.createDocumentFragment();
+
+    localityRecords.forEach(record => {
+      if (!Array.isArray(record) || !record[1]) return;
+      const option = document.createElement("option");
+      option.value = record[1];
+      option.dataset.localityId = record[0];
+      localityOptions.appendChild(option);
+    });
+
+    localityList.appendChild(localityOptions);
+  }
+
+  function updateCityStatus({ announceFreeEntry = false } = {}) {
+    if (!(cityInput instanceof HTMLInputElement) || !cityStatus) return;
+    const city = normalizeLocality(cityInput.value);
+
+    if (!city) {
+      cityStatus.textContent = "";
+      return;
+    }
+
+    if (officialLocalities.has(city)) {
+      cityStatus.textContent = "היישוב נמצא במאגר היישובים הרשמי של הלמ״ס.";
+      return;
+    }
+
+    cityStatus.textContent = announceFreeEntry
+      ? "לא נמצאה התאמה מדויקת במאגר — אפשר להמשיך עם הכתיבה החופשית."
+      : "";
+  }
+
+  if (cityInput instanceof HTMLInputElement) {
+    cityInput.addEventListener("input", () => updateCityStatus());
+    cityInput.addEventListener("change", () => updateCityStatus({ announceFreeEntry: true }));
+    cityInput.addEventListener("blur", () => updateCityStatus({ announceFreeEntry: true }));
+  }
+
+  function validateCallbackPhone() {
+    if (!(phoneInput instanceof HTMLInputElement)) return true;
+    const digitCount = phoneInput.value.replace(/\D/g, "").length;
+    const isValid = digitCount >= 9 && digitCount <= 12;
+    phoneInput.setCustomValidity(isValid ? "" : "הזינו מספר טלפון תקין לחזרה.");
+    return isValid;
+  }
+
+  if (phoneInput instanceof HTMLInputElement) {
+    phoneInput.addEventListener("input", validateCallbackPhone);
+  }
+
+  if (dateInput instanceof HTMLInputElement) {
+    const now = new Date();
+    const localToday = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, 10);
+    dateInput.min = localToday;
+  }
+
+  function formatEventDate(value) {
+    const [year, month, day] = String(value || "").split("-");
+    return year && month && day ? `${day}.${month}.${year}` : value;
+  }
+
+  quoteForm.addEventListener("submit", event => {
+    event.preventDefault();
+    validateCallbackPhone();
+
+    if (!quoteForm.reportValidity()) {
+      if (quoteStatus) quoteStatus.textContent = "יש להשלים את שדות החובה המסומנים.";
+      return;
+    }
+
+    const formData = new FormData(quoteForm);
+    const customerName = normalizeLocality(formData.get("customerName"));
+    const callbackPhone = normalizeLocality(formData.get("callbackPhone"));
+    const eventType = normalizeLocality(formData.get("eventType"));
+    const eventDate = formatEventDate(formData.get("eventDate"));
+    const city = normalizeLocality(formData.get("city"));
+    const budget = normalizeLocality(formData.get("budget")) || "אשמח להכוונה";
+    const colors = normalizeLocality(formData.get("colors")) || "פתוחים להצעות";
+    const details = String(formData.get("details") || "").trim();
+    const hasInspiration = formData.get("hasInspiration") === "yes";
+    const messageLines = [
+      "היי קסם ובלון 🎈",
+      "אשמח לקבל הצעת מחיר. הנה הפרטים:",
+      "",
+      `• שם: ${customerName}`,
+      `• מספר לחזרה: ${callbackPhone}`,
+      `• סוג האירוע: ${eventType}`,
+      `• תאריך: ${eventDate}`,
+      `• עיר / יישוב: ${city}`,
+      `• תקציב משוער: ${budget}`,
+      `• צבעים / סגנון: ${colors}`,
+    ];
+
+    if (details) messageLines.push(`• פרטים נוספים: ${details}`);
+    if (hasInspiration) {
+      messageLines.push("", "יש לי תמונת השראה ואצרף אותה בהודעה הבאה.");
+    }
+
+    const whatsappUrl = `https://wa.me/972512252288?text=${encodeURIComponent(messageLines.join("\n"))}`;
+    const whatsappLink = document.createElement("a");
+    whatsappLink.href = whatsappUrl;
+    whatsappLink.target = "_blank";
+    whatsappLink.rel = "noopener noreferrer";
+    whatsappLink.hidden = true;
+    document.body.appendChild(whatsappLink);
+    whatsappLink.click();
+    whatsappLink.remove();
+
+    if (quoteStatus) {
+      quoteStatus.textContent = "ההודעה מוכנה — WhatsApp נפתח בחלון חדש.";
+    }
+  });
+}
+
 const accessibilityDefaults = {
   fontScale: 1,
   highContrast: false,
