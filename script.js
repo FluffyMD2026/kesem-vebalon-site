@@ -89,7 +89,7 @@ function createCategoryWreath(category, { linked = false, compact = false, butto
   }
 
   const image = document.createElement("img");
-  image.src = "/Images/logo-primary-v6.jpg";
+  image.src = "/Images/logo-primary-v7.jpg";
   image.alt = "";
   image.width = compact ? 190 : 240;
   image.height = compact ? 190 : 240;
@@ -206,7 +206,7 @@ let activeGalleryCategoryIndex = 0;
 let galleryReturnFocus = null;
 
 document.querySelectorAll(".text-brand").forEach(brand => {
-  brand.innerHTML = '<img class="header-brand-mark" src="/Images/logo-icon-v6.jpg" alt="" width="58" height="58">';
+  brand.innerHTML = '<img class="header-brand-mark" src="/Images/logo-icon-v7.jpg" alt="" width="58" height="58">';
 });
 
 const heroContent = document.querySelector(".home-page .hero-content");
@@ -214,7 +214,7 @@ const heroContent = document.querySelector(".home-page .hero-content");
 if (heroContent) {
   const heroLogo = document.createElement("img");
   heroLogo.className = "hero-brand-mark";
-  heroLogo.src = "/Images/logo-primary-v6.jpg";
+  heroLogo.src = "/Images/logo-primary-v7.jpg";
   heroLogo.alt = "";
   heroLogo.width = 184;
   heroLogo.height = 184;
@@ -226,7 +226,7 @@ const siteFooter = document.querySelector(".site-footer");
 if (siteFooter) {
   const footerLogo = document.createElement("img");
   footerLogo.className = "footer-brand-mark";
-  footerLogo.src = "/Images/logo-icon-v6.jpg";
+  footerLogo.src = "/Images/logo-icon-v7.jpg";
   footerLogo.alt = "";
   footerLogo.width = 46;
   footerLogo.height = 46;
@@ -1005,9 +1005,9 @@ if (
 ) {
   const metallicColors = [
     { light: "var(--brand-blue-light)", mid: "var(--brand-blue)", dark: "var(--brand-blue-dark)", deep: "var(--brand-blue-deep)" },
-    { light: "var(--brand-pink-light)", mid: "var(--brand-pink)", dark: "var(--brand-pink-dark)", deep: "var(--brand-pink-deep)" },
+    { light: "var(--brand-green-light)", mid: "var(--brand-green)", dark: "var(--brand-green-dark)", deep: "var(--brand-green-deep)" },
     { light: "var(--brand-silver-light)", mid: "var(--brand-silver)", dark: "var(--brand-silver-dark)", deep: "var(--brand-silver-deep)" },
-    { light: "var(--brand-ivory-light)", mid: "var(--brand-ivory)", dark: "var(--brand-ivory-dark)", deep: "var(--brand-silver-dark)" },
+    { light: "var(--brand-champagne-light)", mid: "var(--brand-champagne)", dark: "var(--brand-champagne-dark)", deep: "var(--brand-silver-dark)" },
   ];
   const layer = document.createElement("div");
   layer.className = "balloons-layer";

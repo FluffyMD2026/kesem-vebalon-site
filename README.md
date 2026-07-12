@@ -7,17 +7,17 @@ Static Hebrew website for Kesem Vebalon.
 The site palette is controlled from the first variables in `theme.css`:
 
 ```css
---logo-blue: #22b4d6;
---logo-pink: #f39ab7;
---logo-silver: #c0c0c0;
---logo-ivory: #f7efe6;
---logo-gold: #b98246;
+--logo-blue: #4fc3e3;
+--logo-green: #7dba7a;
+--logo-silver: #d6d6d6;
+--logo-champagne: #f1e3d5;
+--logo-gold: #e1b879;
 ```
 
 Change only those values when the logo colors change. Buttons, backgrounds,
 cards, service bullets, shadows, animated balloons, and accessibility controls
 derive their colors automatically from that palette. The cropped website marks
-are `Images/logo-primary.png` and `Images/logo-icon.png`.
+are `Images/logo-primary-v7.jpg` and `Images/logo-icon-v7.jpg`.
 
 ## Local preview
 

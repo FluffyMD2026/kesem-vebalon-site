@@ -45,7 +45,7 @@ shared_assets=(
   style.css
   script.js
   Fonts/Rubik-Regular.ttf
-  Images/logo-icon-v6.jpg
+  Images/logo-icon-v7.jpg
   Images/instagram-logo.png
   Images/whatsapp-logo.svg
 )
@@ -54,14 +54,14 @@ home_assets=(
   index.html
   gallery-data.js
   Images/hero-balloon.jpeg
-  Images/logo-primary-v6.jpg
+  Images/logo-primary-v7.jpg
   "${shared_assets[@]}"
 )
 
 gallery_assets=(
   gallery/index.html
   gallery-data.js
-  Images/logo-primary-v6.jpg
+  Images/logo-primary-v7.jpg
   "${shared_assets[@]}"
 )
 

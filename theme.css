@@ -4,58 +4,57 @@
   Every interface color below is generated from them.
 */
 :root {
-  --logo-blue: #22b4d6;
-  --logo-pink: #f39ab7;
-  --logo-silver: #c0c0c0;
-  --logo-ivory: #f7efe6;
-  --logo-gold: #b98246;
+  --logo-blue: #4fc3e3;
+  --logo-green: #7dba7a;
+  --logo-silver: #d6d6d6;
+  --logo-champagne: #f1e3d5;
+  --logo-gold: #e1b879;
 
   /* Generated brand shades */
   --brand-blue: var(--logo-blue);
   --brand-blue-dark: color-mix(in srgb, var(--logo-blue) 42%, #032d39);
   --brand-blue-deep: color-mix(in srgb, var(--logo-blue) 24%, #02232c);
   --brand-blue-light: color-mix(in srgb, var(--logo-blue) 35%, #ffffff);
-  --brand-blue-soft: color-mix(in srgb, var(--logo-blue) 13%, var(--logo-ivory));
+  --brand-blue-soft: color-mix(in srgb, var(--logo-blue) 13%, var(--logo-champagne));
 
-  --brand-pink: var(--logo-pink);
-  --brand-pink-dark: color-mix(in srgb, var(--logo-pink) 45%, #642039);
-  --brand-pink-deep: color-mix(in srgb, var(--logo-pink) 25%, #451326);
-  --brand-pink-light: color-mix(in srgb, var(--logo-pink) 38%, #ffffff);
-  --brand-pink-soft: color-mix(in srgb, var(--logo-pink) 14%, var(--logo-ivory));
+  --brand-green: var(--logo-green);
+  --brand-green-dark: color-mix(in srgb, var(--logo-green) 48%, #164c2c);
+  --brand-green-deep: color-mix(in srgb, var(--logo-green) 28%, #0b321e);
+  --brand-green-light: color-mix(in srgb, var(--logo-green) 38%, #ffffff);
+  --brand-green-soft: color-mix(in srgb, var(--logo-green) 14%, var(--logo-champagne));
 
   --brand-silver: var(--logo-silver);
   --brand-silver-dark: color-mix(in srgb, var(--logo-silver) 42%, #30353a);
   --brand-silver-deep: color-mix(in srgb, var(--logo-silver) 24%, #23272b);
   --brand-silver-light: color-mix(in srgb, var(--logo-silver) 35%, #ffffff);
 
-  --brand-ivory: var(--logo-ivory);
-  --brand-ivory-dark: color-mix(in srgb, var(--logo-ivory) 76%, var(--logo-silver));
-  --brand-ivory-light: color-mix(in srgb, var(--logo-ivory) 42%, #ffffff);
-  --brand-blend: color-mix(in srgb, var(--logo-blue) 52%, var(--logo-pink));
-  --brand-blend-dark: color-mix(in srgb, var(--brand-blend) 35%, #443147);
+  --brand-champagne: var(--logo-champagne);
+  --brand-champagne-dark: color-mix(in srgb, var(--logo-champagne) 76%, var(--logo-silver));
+  --brand-champagne-light: color-mix(in srgb, var(--logo-champagne) 42%, #ffffff);
+  --brand-blend: color-mix(in srgb, var(--logo-blue) 52%, var(--logo-green));
+  --brand-blend-dark: color-mix(in srgb, var(--brand-blend) 35%, #174541);
   --brand-gold: var(--logo-gold);
   --brand-gold-dark: color-mix(in srgb, var(--logo-gold) 66%, #543419);
-  --brand-gold-soft: color-mix(in srgb, var(--logo-gold) 13%, var(--logo-ivory));
+  --brand-gold-soft: color-mix(in srgb, var(--logo-gold) 13%, var(--logo-champagne));
 
   /* Semantic interface tokens */
   --ink: color-mix(in srgb, #17191d 88%, var(--logo-blue));
   --muted: color-mix(in srgb, var(--ink) 60%, var(--logo-silver));
   --line: color-mix(in srgb, var(--logo-silver) 48%, var(--brand-gold-soft));
-  --paper: color-mix(in srgb, #ffffff 94%, var(--logo-ivory));
-  --soft: var(--logo-ivory);
+  --paper: color-mix(in srgb, #ffffff 94%, var(--logo-champagne));
+  --soft: var(--logo-champagne);
   --sky: var(--brand-blue-soft);
   --blue: var(--brand-blue);
   --blue-dark: var(--brand-blue-dark);
-  --pink: var(--brand-pink);
-  --pink-dark: var(--brand-pink-dark);
-  --pink-soft: var(--brand-pink-soft);
-  --yellow: var(--brand-ivory-dark);
-  --green: var(--brand-blue);
+  --green: var(--brand-green);
+  --green-dark: var(--brand-green-dark);
+  --green-soft: var(--brand-green-soft);
+  --yellow: var(--brand-champagne-dark);
 
-  --brand-gradient: linear-gradient(105deg, var(--brand-blue-dark), var(--brand-pink-dark));
-  --page-gradient: linear-gradient(180deg, var(--brand-ivory-light) 0%, var(--brand-blue-soft) 46%, var(--paper) 100%);
+  --brand-gradient: linear-gradient(105deg, var(--brand-blue-dark), var(--brand-green-dark));
+  --page-gradient: linear-gradient(180deg, var(--brand-champagne-light) 0%, var(--brand-blue-soft) 46%, var(--paper) 100%);
   --blue-shadow: color-mix(in srgb, var(--brand-blue) 24%, transparent);
-  --pink-shadow: color-mix(in srgb, var(--brand-pink) 26%, transparent);
+  --green-shadow: color-mix(in srgb, var(--brand-green) 26%, transparent);
   --surface-shadow: color-mix(in srgb, var(--ink) 12%, transparent);
   --focus-ring: var(--brand-blue-deep);
   --shadow: 0 18px 45px var(--surface-shadow);
