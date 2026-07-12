@@ -64,6 +64,19 @@ bash scripts/check-performance.sh
 The calculation deliberately ignores CDN compression, browser caching, and
 parallel HTTP/2 requests, so deployed repeat visits should be faster.
 
+## Security check
+
+Run the deployment security guard with:
+
+```sh
+bash scripts/check-security.sh
+```
+
+The Netlify build runs this automatically after gallery generation. It fails
+the deployment if the homepage structured-data CSP hash is stale, hardened
+HSTS is missing, the retired Netlify origin reappears in public SEO metadata,
+or an HTTP mixed-content reference is introduced.
+
 ## Search metadata
 
 The current canonical origin is `https://kesemvballoon.co.il`. Canonical
@@ -72,3 +85,8 @@ data use this value. When a custom domain is connected, replace the old origin
 in those files, update the structured-data CSP hash in `netlify.toml`, redirect
 the Netlify hostname to the custom domain, and resubmit the sitemap in Google
 Search Console.
+
+The legacy Google verification file remains available only on the retired
+Netlify hostname while Search Console's domain move is being completed. Remove
+that exception only after Google no longer needs ownership proof for the old
+property.
